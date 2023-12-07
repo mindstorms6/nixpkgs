@@ -44,6 +44,7 @@ in {
       # test loading custom components
       customComponents = with pkgs.home-assistant-custom-components; [
         prometheus_sensor
+        adaptive_lighting
       ];
 
       # test loading lovelace modules
@@ -180,6 +181,8 @@ in {
     with subtest("Check that custom components get installed"):
         hass.succeed("test -f ${configDir}/custom_components/prometheus_sensor/manifest.json")
         hass.wait_until_succeeds("journalctl -u home-assistant.service | grep -q 'We found a custom integration prometheus_sensor which has not been tested by Home Assistant'")
+        hass.succeed("test -f ${configDir}/custom_components/adaptive_lighting/manifest.json")
+        hass.wait_until_succeeds("journalctl -u home-assistant.service | grep -q 'We found a custom integration adaptive_lighting which has not been tested by Home Assistant'")
 
     with subtest("Check that lovelace modules are referenced and fetchable"):
         hass.succeed("grep -q 'mini-graph-card-bundle.js' '${configDir}/ui-lovelace.yaml'")
