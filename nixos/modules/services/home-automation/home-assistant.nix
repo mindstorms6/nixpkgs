@@ -157,7 +157,8 @@ in {
       default = [];
       example = literalExpression ''
         with pkgs.home-assistant-custom-components; [
-          prometheus-sensor
+          prometheus_sensor
+          adaptive_lighting
         ];
       '';
       description = lib.mdDoc ''
