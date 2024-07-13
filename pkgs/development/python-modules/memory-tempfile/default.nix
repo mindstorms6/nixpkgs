@@ -6,7 +6,7 @@
   pythonOlder,
   # tests
   pytestCheckHook,
-  pytest-benchmark
+  pytest-benchmark,
 }:
 
 buildPythonPackage rec {
@@ -34,9 +34,7 @@ buildPythonPackage rec {
   # And the test does not have the fallback feature enabled. Instead, just skip the test.
   doCheck = false;
 
-  nativeBuildInputs = [
-    poetry-core
-  ];
+  nativeBuildInputs = [ poetry-core ];
 
   nativeCheckInputs = [
     pytestCheckHook

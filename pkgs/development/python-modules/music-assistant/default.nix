@@ -31,12 +31,12 @@
   pytestCheckHook,
   pythonOlder,
   ruff,
-  setuptools,  
+  setuptools,
   shortuuid,
   syrupy,
   tomli,
   unidecode,
-  zeroconf
+  zeroconf,
 }:
 
 buildPythonPackage rec {
@@ -87,9 +87,7 @@ buildPythonPackage rec {
     zeroconf
   ];
 
-  nativeBuildInputs = [ 
-    setuptools
-  ];
+  nativeBuildInputs = [ setuptools ];
 
   nativeCheckInputs = [
     pytestCheckHook
