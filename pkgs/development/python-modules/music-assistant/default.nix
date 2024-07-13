@@ -1,18 +1,27 @@
 {
   lib,
+  aiodns,
   aiofiles,
   aiohttp,
   aioresponses,
+  aiorun,
   aiosqlite,
   asyncio-throttle,
+  brotli,
   buildPythonPackage,
+  certifi,
+  colorlog,
   cryptography,
+  eyed3,
+  faust-cchardet,
   fetchFromGitHub,
   isort,
   mashumaro,
-  memory_tempfile,
+  memory-tempfile,
+  music-assistant-frontend,
   mypy,
   orjson,
+  pillow,
   pkgs,
   poetry-core,
   pre-commit-hooks,
@@ -26,6 +35,7 @@
   shortuuid,
   syrupy,
   tomli,
+  unidecode,
   zeroconf
 }:
 
@@ -45,21 +55,33 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace pyproject.toml \
-      --replace-fail "--cov" ""
+      --replace-fail "--cov" "" \
+      --replace-fail "music-assistant-frontend==" ""
+
+    substituteInPlace music_assistant/server/controllers/webserver.py \
+      --replace-fail "from music_assistant_frontend import where as locate_frontend" "" \
+      --replace-fail "locate_frontend()" "\"/tmp\""  
   '';
 
   build-system = [ poetry-core ];
 
   dependencies = [
+    aiodns
     aiofiles
     aiohttp
     aiosqlite
     asyncio-throttle
+    brotli
+    certifi
+    colorlog
     cryptography
     mashumaro
-    memory_tempfile
+    memory-tempfile
+    # music-assistant-frontend
     orjson
+    pillow
     shortuuid
+    unidecode
     zeroconf
   ];
 
@@ -70,6 +92,7 @@ buildPythonPackage rec {
   nativeCheckInputs = [
     pytestCheckHook
     pkgs.codespell
+    pkgs.ffmpeg
     isort
     mypy
     pre-commit-hooks

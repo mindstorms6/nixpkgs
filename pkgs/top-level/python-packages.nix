@@ -7967,6 +7967,8 @@ self: super: with self; {
 
   music-assistant = callPackage ../development/python-modules/music-assistant { };
 
+  music-assistant-frontend = callPackage ../development/python-modules/music-assistant-frontend { };
+
   musicbrainzngs = callPackage ../development/python-modules/musicbrainzngs { };
 
   music-tag = callPackage ../development/python-modules/music-tag { };
