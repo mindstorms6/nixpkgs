@@ -69,6 +69,7 @@ buildPythonPackage rec {
     aiodns
     aiofiles
     aiohttp
+    aiorun
     aiosqlite
     asyncio-throttle
     brotli
@@ -80,6 +81,7 @@ buildPythonPackage rec {
     # music-assistant-frontend
     orjson
     pillow
+    pkgs.ffmpeg
     shortuuid
     unidecode
     zeroconf
