@@ -55,12 +55,7 @@ buildPythonPackage rec {
 
   postPatch = ''
     substituteInPlace pyproject.toml \
-      --replace-fail "--cov" "" \
-      --replace-fail "music-assistant-frontend==" ""
-
-    substituteInPlace music_assistant/server/controllers/webserver.py \
-      --replace-fail "from music_assistant_frontend import where as locate_frontend" "" \
-      --replace-fail "locate_frontend()" "\"/tmp\""  
+      --replace-fail "--cov" ""
   '';
 
   build-system = [ poetry-core ];
@@ -78,7 +73,7 @@ buildPythonPackage rec {
     cryptography
     mashumaro
     memory-tempfile
-    # music-assistant-frontend
+    music-assistant-frontend
     orjson
     pillow
     pkgs.ffmpeg

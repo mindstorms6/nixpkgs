@@ -2,37 +2,21 @@
   lib,
   buildPythonPackage,
   fetchPypi,
-  pkgs,
   pytestCheckHook,
   pythonOlder,
-  setuptools,
-  wheel
 }:
 
 buildPythonPackage rec {
-  pname = "music-assistant-frontend";
+  pname = "music_assistant_frontend";
   version = "2.6.3";
-  pyproject = true;  
-
-  disabled = pythonOlder "3.9";
-
-  propagatedBuildInputs = [
-    setuptools
-    wheel
-  ];
+  format = "wheel";
 
   src = fetchPypi {
-    inherit pname version;
-    hash = "sha256-LLU6uRG8ShY5DcwNSJlAKU48iSfQh7a2f9tjMxMDpT4=";
+    inherit pname version format;
+    dist = "py3";
+    python = "py3";
+    hash = "sha256-A4swDf6ojywTExsGn1V5ra7BK55p439qiKnrDpHOZMI=";
   };
-
-  postPatch = ''
-    substituteInPlace pyproject.toml \
-      --replace-fail "setuptools==" "setuptools>=" \
-      --replace-fail "wheel==" "wheel>="
-
-    sed -i '/--cov=/d' pyproject.toml
-  '';
 
   pythonImportsCheck = [ "music_assistant_frontend" ];
 
