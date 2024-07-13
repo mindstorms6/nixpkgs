@@ -24,6 +24,9 @@ let
     mopeka = [
       pyswitchbot
     ];
+    music-assistat = [
+
+    ];
     onboarding = [
       pymetno
       radios

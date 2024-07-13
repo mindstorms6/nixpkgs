@@ -36,6 +36,8 @@
 
   moonraker = callPackage ./moonraker {};
 
+  music-assistant = callPackage ./music-assistant {};
+
   ntfy = callPackage ./ntfy {};
 
   omnik_inverter = callPackage ./omnik_inverter {};
