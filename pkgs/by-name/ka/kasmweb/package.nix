@@ -21,7 +21,6 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mkdir $out
-    rm bin/utils/yq*
     cp -r bin conf www $out/
 
     runHook postInstall
