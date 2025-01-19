@@ -263,7 +263,7 @@ in
           extraOptions = [
             "--network=kasm_default_network"
             "--userns=host"
-            "--gpus=all"
+            "--device=nvidia.com/gpu=all"
             "--read-only"
           ];
         };
